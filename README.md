@@ -2,6 +2,9 @@
 I will save all the findings of my research about how deep learning is applied in Finance here.
 
 
+Classification-Based Financial Markets Prediction Using Deep Neural Networks
+https://papers.ssrn.com/sol3/Papers.cfm?abstract_id=2756331
+
 Investigation Into The Effectiveness Of Long Short Term Memory Networks For Stock Price Prediction
 https://arxiv.org/abs/1603.07893
 
