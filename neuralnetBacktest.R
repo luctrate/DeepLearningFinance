@@ -4,12 +4,12 @@
 setwd("C:/Users/shook/Google Drive/Bachelor Thesis/Empirisches Modell")
 setwd("H:/Bachelor Thesis/Empirische Umsetzung")
 
-#Restart ACHTUNG löscht alle Daten im Workspace
+#Restart ACHTUNG lÃ¶scht alle Daten im Workspace
 rm(list=ls(all=TRUE))
 #Shutdown der h2o Server instanz
 h2o.shutdown()
 Y
-#Initialisieren der h2o Instanz mit N-1 verfügbaren Threads
+#Initialisieren der h2o Instanz mit N-1 verfÃ¼gbaren Threads
 h2o.init(nthreads = -1, enable_assertions = FALSE)
 
 #Verwendete Packete. Installation
@@ -29,7 +29,7 @@ Zscores_Final=Zscores_Final[c(1:34,38:61,35:37)]
 format(as.Date(Zscores_Final[4953,1],origin="1899-12-30"), "%m, %y")
 format(as.Date(Zscores_Final[4954,1],origin="1899-12-30"), "%m, %y")
 
-#Seed setzten um Ergebnisse replizieren zu können, Train und TEst set splitten
+#Seed setzten um Ergebnisse replizieren zu kÃ¶nnen, Train und TEst set splitten
 set.seed(12)
 test_ind = sample(nrow(Zscores_Final[1:4953,]), size = 1000)
 
@@ -41,8 +41,8 @@ train_init_h2o = as.h2o(train_init)
 test_init_h2o = as.h2o(test_init)
 
 #2. Hyperparametersearch. UmSicherzustelen das passende Hyperparameter 
-#verwendet werden wird zunächst diese Suche durchgeführt.
-#Auchmit gesetzten Seed ist es nicht gewährleistet immer das selbe Ergebnis zu erhalten.
+#verwendet werden wird zunÃ¤chst diese Suche durchgefÃ¼hrt.
+#Auchmit gesetzten Seed ist es nicht gewÃ¤hrleistet immer das selbe Ergebnis zu erhalten.
 search_criteria = list(strategy = "RandomDiscrete", max_runtime_secs = 360, max_models = 100, seed=1234567, stopping_rounds=5, stopping_tolerance=1e-2)
 
 hyper_params <- list(
@@ -88,7 +88,7 @@ grid@summary_table[1,]
 
 write.csv(train_init[,3:60], file="Daten/2_Train5Jahre.csv",row.names=FALSE)
 write.csv(test_init[,3:60], file="Daten/2_Test5Jahre.csv",row.names=FALSE)
-#Bei dem Rückgabewert handelt es sich nur um die Gewichte des Autoencoders
+#Bei dem RÃ¼ckgabewert handelt es sich nur um die Gewichte des Autoencoders
 stacked_Model_weights = check.deeplearning_stacked_autoencoder()
 
 #Weiteres Trainieren mit Backprop
@@ -138,7 +138,7 @@ ergebnismatrix = read.csv("Daten/0_ergebnismatrix_blank.csv", sep =",", dec = ".
 ergebnismatrix_buyable = ergebnismatrix
 
 nntrain_iterativ = nntrain
-#arrays für Kennzahlen
+#arrays fÃ¼r Kennzahlen
 Accuracy = c()
 Misclass_Rate = c()
 TP_Rate = c()
@@ -169,7 +169,7 @@ for (m in 46:length(monthchangepos)) {
   #tempPredict[tempvar[,2]>quantile(tempvar[,2],.775)&is.na(tempPredict)]=0
   #tempPredict[is.na(tempPredict)]=1
   
-  #füllen der Ergebnismatrix
+  #fÃ¼llen der Ergebnismatrix
   for (i in 1:nrow(test$predict)){
     ergebnismatrix[which(ergebnismatrix[,1]==test$monat[i]),which(colnames(ergebnismatrix)==test$titel[i])] = test$predict[i]
     ergebnismatrix_buyable[which(ergebnismatrix[,1]==test$monat[i]),which(colnames(ergebnismatrix)==test$titel[i])] = if (test$inIndex[i]==1) test$predict[i] else NA
@@ -253,7 +253,7 @@ plot(Precision)
 plot(TPRate)
 kennzahlen=data.frame()
 
-#Funktion für die Erstellung des Autoencoders
+#Funktion fÃ¼r die Erstellung des Autoencoders
 check.deeplearning_stacked_autoencoder <- function() {  
   # this function builds a vector of autoencoder models, one per layer
   get_stacked_ae_array <- function(training_data,layers,args){  
