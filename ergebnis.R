@@ -4,13 +4,13 @@
 #ToDo
 
 #	Turnover
-#	Performance vor und nach Transaktionskosten (nehmen Sie an, dass jede Transaktion Kosten in Höhe von 0.2% des Transaktionsvolumens verursachen)
+#	Performance vor und nach Transaktionskosten (nehmen Sie an, dass jede Transaktion Kosten in HÃ¶he von 0.2% des Transaktionsvolumens verursachen)
 
-#Benötigte Pakete: Installation
+#BenÃ¶tigte Pakete: Installation
 install.packages("quadprog")
 install.packages("corpcor")
 
-#Benötigte Pakete: Laden
+#BenÃ¶tigte Pakete: Laden
 library(quadprog)
 library(corpcor)
 
@@ -64,7 +64,7 @@ N = 20
 A.Equality <- matrix(c(rep(1,20)), ncol=1)
 A = cbind(A.Equality, diag(20),-diag(20)) 
 b = c(1, rep(0.02,20), rep(-0.15,20))
-#m für 5 Jahre
+#m fÃ¼r 5 Jahre
 for (m in 108:nrow(ergebnismatrix_full)) {
   top20=order(ergebnismatrix_full[m,1:228], decreasing = T)[2:(N+1)]
   GewichtungGG[m,top20] = 1/N
